@@ -37,13 +37,13 @@ dnf5 group install -y --with-optional virtualization
 # dnf5 -y copr disable ublue-os/staging
 
 # Installs 86box
-dnf5 -y copr enable rob72/86box
+dnf5 -y copr enable "rob72/86box"
 dnf5 install -y 86box
 mkdir -p /usr/local/share/86Box/
 curl -sL https://github.com/86Box/roms/archive/refs/tags/$($86BOX_VERSION).tar.gz -o /usr/local/share/86Box/
 tar xzf /usr/local/share/86Box/$($86BOX_VERSION).tar.gz
 mv $($86BOX_VERSION)-roms roms
-dnf5 -y copr disable rob72/86box #disables COPR so it doesn't end up on final image
+dnf5 -y copr disable "rob72/86box" #disables COPR so it doesn't end up on final image
 
 #### Example for enabling a System Unit File
 
