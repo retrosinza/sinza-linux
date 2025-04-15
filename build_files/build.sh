@@ -14,6 +14,8 @@ set -ouex pipefail
 # Installs workstation components
 #dnf5 install -y @workstation-product @workstation-ostree-support
 
+dnf5 install -y @workstation-ostree-support
+
 # removes toolbox and fedora flathub
 # dnf5 remove -y toolbox fedora-flathub-remote
 # dnf5 install -y distrobox # dont remove deps shared between distrobox and toolbox
@@ -34,7 +36,6 @@ set -ouex pipefail
 # dnf5 -y copr disable ublue-os/staging
 
 # Installs 86box
-dnf5 -y install 'dnf5-command(copr)'
 dnf5 -y copr enable rob72/86Box
 dnf5 install -y 86Box
 mkdir -p /usr/local/share/86Box/
