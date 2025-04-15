@@ -12,10 +12,7 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # Installs workstation components
-dnf5 install -y @workstation-product @workstation-ostree-support
-
-# Installs desktop. Currently set to "window managers" for fast build
-dnf5 install -y @window-managers
+#dnf5 install -y @workstation-product @workstation-ostree-support
 
 # removes toolbox and fedora flathub
 # dnf5 remove -y toolbox fedora-flathub-remote
@@ -41,8 +38,8 @@ dnf5 -y copr enable rob72/86Box
 dnf5 install -y 86Box
 mkdir -p /usr/local/share/86Box/
 curl -sL https://github.com/86Box/roms/archive/refs/tags/$($BOX86_VERSION).tar.gz -o /usr/local/share/86Box/
-tar xzf /usr/local/share/86Box/$($BOX86_VERSION).tar.gz
-mv $($BOX86_VERSION)-roms roms
+tar xzf /usr/local/share/86Box/$BOX86_VERSION.tar.gz
+mv $BOX86_VERSION-roms roms
 dnf5 -y copr disable rob72/86Box #disables COPR so it doesn't end up on final image
 
 #### Example for enabling a System Unit File
