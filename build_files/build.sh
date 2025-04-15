@@ -14,20 +14,20 @@ set -ouex pipefail
 # Installs workstation components
 dnf5 install -y @workstation-product @workstation-ostree-support
 
-# Installs desktop. Currently set to KDE
-dnf5 install -y @kde-desktop
+# Installs desktop. Currently set to "window managers" for fast build
+dnf5 install -y @window-managers
 
 # removes toolbox and fedora flathub
-dnf5 remove -y toolbox fedora-flathub-remote
-dnf5 install -y distrobox # dont remove deps shared between distrobox and toolbox
-dnf5 autoremove -y
+# dnf5 remove -y toolbox fedora-flathub-remote
+# dnf5 install -y distrobox # dont remove deps shared between distrobox and toolbox
+# dnf5 autoremove -y
 
 # installs tui browsers because I like them
-dnf5 install -y @text-internet
+# dnf5 install -y @text-internet
 
 # this installs the whole virtualization group
 # the --with-optional version includes all architectures supported by QEMU
-dnf5 group install -y --with-optional virtualization
+# dnf5 group install -y --with-optional virtualization
 
 # Use a COPR Example:
 #
