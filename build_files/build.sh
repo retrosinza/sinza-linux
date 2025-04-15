@@ -14,7 +14,7 @@ set -ouex pipefail
 # Installs workstation components
 #dnf5 install -y @workstation-product @workstation-ostree-support
 
-dnf5 install -y @workstation-ostree-support
+dnf5 install -y @workstation-ostree-support install 'dnf5-command(copr)'
 
 # removes toolbox and fedora flathub
 # dnf5 remove -y toolbox fedora-flathub-remote
