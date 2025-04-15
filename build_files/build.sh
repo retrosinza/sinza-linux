@@ -38,10 +38,11 @@ dnf5 install -y @workstation-ostree-support install 'dnf5-command(copr)'
 # Installs 86box
 dnf5 -y copr enable rob72/86Box
 dnf5 install -y 86Box
-mkdir -p /usr/local/share/86Box/
+mkdir -p /usr/local/share/86Box/ && cd /usr/local/share/86Box/
 curl -sL ""https://github.com/86Box/roms/archive/refs/tags/$BOX86_VERSION.tar.gz -o /usr/local/share/86Box/$BOX86_VERSION.tar.gz
-tar -xzvf /usr/local/share/86Box/$BOX86_VERSION.tar.gz 
-mv /usr/local/share/86Box/$BOX86_VERSION-roms /usr/local/share/86Box/roms
+tar -xzf $BOX86_VERSION.tar.gz 
+mv $BOX86_VERSION-roms roms
+cd -
 dnf5 -y copr disable rob72/86Box #disables COPR so it doesn't end up on final image
 
 #### Example for enabling a System Unit File
