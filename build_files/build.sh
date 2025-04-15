@@ -34,6 +34,7 @@ set -ouex pipefail
 # dnf5 -y copr disable ublue-os/staging
 
 # Installs 86box
+dnf5 -y install 'dnf5-command(copr)'
 dnf5 -y copr enable rob72/86Box
 dnf5 install -y 86Box
 mkdir -p /usr/local/share/86Box/
@@ -45,4 +46,4 @@ dnf5 -y copr disable rob72/86Box #disables COPR so it doesn't end up on final im
 #### Example for enabling a System Unit File
 
 systemctl enable podman.socket
-systemctl enable libvirtd
+#systemctl enable libvirtd
