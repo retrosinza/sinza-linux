@@ -12,7 +12,10 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # Installs workstation components
-dnf5 install -y workstation-product workstation-ostree-support
+dnf5 install -y @workstation-product @workstation-ostree-support
+
+# Installs desktop. Currently set to KDE
+dnf5 install -y @kde-desktop
 
 # removes toolbox and fedora flathub
 dnf5 remove -y toolbox fedora-flathub-remote
