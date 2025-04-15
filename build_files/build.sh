@@ -14,9 +14,6 @@ set -ouex pipefail
 # Installs workstation components
 dnf5 install -y @workstation-product @workstation-ostree-support
 
-# Installs desktop. Currently set to KDE
-dnf5 install -y @kde-desktop
-
 # removes toolbox and fedora flathub
 dnf5 remove -y toolbox fedora-flathub-remote
 dnf5 install -y distrobox # dont remove deps shared between distrobox and toolbox
