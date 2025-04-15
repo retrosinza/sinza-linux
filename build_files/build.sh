@@ -10,10 +10,12 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # this installs a package from fedora repos
-#dnf5 install -y tmux
 dnf5 remove -y firefox thunderbird toolbox
 dnf5 install -y distrobox # dont remove deps shared between distrobox and toolbox
 dnf5 autoremove -y
+
+# this installs the whole virtualization group
+dnf5 group install -y --with-optional virtualization
 
 # Use a COPR Example:
 #
@@ -25,3 +27,4 @@ dnf5 autoremove -y
 #### Example for enabling a System Unit File
 
 systemctl enable podman.socket
+systemctl enable libvirtd
