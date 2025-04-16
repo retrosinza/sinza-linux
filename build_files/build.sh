@@ -19,22 +19,11 @@ dnf5 remove -y toolbox fedora-flathub-remote
 dnf5 install -y distrobox flatpak # dont remove deps shared between distrobox and toolbox
 dnf5 autoremove -y
 
-
 # installs flathub remote
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # installs tui browsers because I like them
 dnf5 install -y @text-internet
-
-# installs zen through flathub
-flatpak install -y flathub app.zen_browser.zen
-
-# installs creative apps
-# flatpak install -y \
-#         flathub org.inkscape.Inkscape \
-#         org.gimp.GIMP \
-#         org.audacityteam.Audacity \
-#         org.kde.kdenlive
 
 # this installs the whole virtualization group
 # the --with-optional version includes all architectures supported by QEMU
