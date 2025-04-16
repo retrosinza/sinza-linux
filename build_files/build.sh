@@ -11,10 +11,10 @@ set -ouex pipefail
 # List of rpmfusion packages can be found here:
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/42/x86_64/repoview/index.html&protocol=https&redirect=1
 
-# Installs workstation components
-dnf5 install -y @workstation-product @workstation-ostree-support distrobox flatpak
-
 # removes toolbox and fedora flathub
+dnf5 install -y distrobox flatpak # flatpak must be specified or else
+                                  # fedora-flathub-remote will
+                                  # autoremove it!
 dnf5 remove -y toolbox fedora-flathub-remote # dnf5 cleans up after itself as it's
                                              # a well-behaved package manager
 
@@ -26,17 +26,18 @@ dnf5 install -y @text-internet
 
 # this installs the whole virtualization group
 # the --with-optional version includes all architectures supported by QEMU
-dnf5 group install -y --with-optional virtualization
+# VirtualBox is added here because of rpmfusion being here
+dnf5 group install -y --with-optional virtualization VirtualBox
 
 # ublue package
-dnf5 -y copr enable ublue-os/packages
-dnf5 install -y ublue-brew
+# dnf5 -y copr enable ublue-os/packages
+# dnf5 install -y ublue-brew
 
-dnf5 install -y distribution-gpg-keys
-sudo rpmkeys --import /usr/share/distribution-gpg-keys/rpmfusion/RPM-GPG-KEY-rpmfusion-free-fedora-$FEDORA_VERSION
-dnf5 --setopt=localpkg_gpgcheck=1 install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$FEDORA_VERSION.noarch.rpm
-dnf5 config-manager setopt fedora-cisco-openh264.enabled=1
-dnf5 install -y VirtualBox
+# dnf5 install -y distribution-gpg-keys
+# sudo rpmkeys --import /usr/share/distribution-gpg-keys/rpmfusion/RPM-GPG-KEY-rpmfusion-free-fedora-$FEDORA_VERSION
+# dnf5 --setopt=localpkg_gpgcheck=1 install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$FEDORA_VERSION.noarch.rpm
+# dnf5 config-manager setopt fedora-cisco-openh264.enabled=1
+# dnf5 install -y VirtualBox
 
 # Installs 86box
 # dnf5 -y copr enable rob72/86Box
@@ -52,7 +53,7 @@ dnf5 install -y VirtualBox
 systemctl enable podman.socket
 systemctl enable libvirtd
 
-dnf5 -y copr disable ublue-os/packages
-dnf5 remove -y rpmfusion-free-release-$FEDORA_VERSION
-dnf5 config-manager setopt fedora-cisco-openh264.enabled=0
-dnf5 remove -y distribution-gpg-keys # put at the very end for safety
+# dnf5 -y copr disable ublue-os/packages
+# dnf5 remove -y rpmfusion-free-release-$FEDORA_VERSION
+# dnf5 config-manager setopt fedora-cisco-openh264.enabled=0
+# dnf5 remove -y distribution-gpg-keys # put at the very end for safety
