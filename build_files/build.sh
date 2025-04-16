@@ -12,12 +12,11 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/42/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # Installs workstation components
-dnf5 install -y @workstation-product @workstation-ostree-support
+dnf5 install -y @workstation-product @workstation-ostree-support distrobox flatpak
 
 # removes toolbox and fedora flathub
-dnf5 remove -y toolbox fedora-flathub-remote
-dnf5 install -y distrobox flatpak # dont remove deps shared between distrobox and toolbox
-dnf5 autoremove -y
+dnf5 remove -y toolbox fedora-flathub-remote # dnf5 cleans up after itself as it's
+                                             # a well-behaved package manager
 
 # installs flathub remote
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
