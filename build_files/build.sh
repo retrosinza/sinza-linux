@@ -27,7 +27,7 @@ dnf5 install -y @text-internet
 # this installs the whole virtualization group
 # the --with-optional version includes all architectures supported by QEMU
 dnf5 group install -y --with-optional virtualization
-n
+
 # ublue package
 dnf5 -y copr enable ublue-os/packages
 dnf5 install -y ublue-brew
