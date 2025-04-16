@@ -31,7 +31,7 @@ dnf5 group install -y --with-optional virtualization
 # ublue package
 dnf5 -y copr enable ublue-os/packages
 dnf5 install -y ublue-brew
-dnf5 -y copr-disable ublue-os/packages
+dnf5 -y copr disable ublue-os/packages
 
 
 dnf5 install -y distribution-gpg-keys
