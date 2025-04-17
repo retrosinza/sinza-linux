@@ -24,6 +24,9 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 # installs tui browsers because I like them
 dnf5 install -y @text-internet
 
+# Also remove the GUI browsers that I don't really want
+dnf5 remove -y firefox thunderbird
+
 # this installs the whole virtualization group
 # the --with-optional version includes all architectures supported by QEMU
 # VirtualBox is added here because of rpmfusion being here
