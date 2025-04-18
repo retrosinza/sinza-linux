@@ -21,11 +21,9 @@ dnf5 remove -y toolbox fedora-flathub-remote # dnf5 cleans up after itself as it
 # installs flathub remote
 flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
-# installs tui browsers because I like them
-dnf5 install -y @text-internet
-
-# Also remove the GUI browsers that I don't really want as packages
-dnf5 remove -y firefox thunderbird
+# Also remove the applications that I don't really want as packages
+# for codec reasons
+dnf5 remove -y firefox thunderbird elisa
 
 # this installs the whole virtualization group
 # the --with-optional version includes all architectures supported by QEMU
@@ -33,8 +31,9 @@ dnf5 remove -y firefox thunderbird
 dnf5 group install -y --with-optional virtualization 
 
 # ublue package
-# dnf5 -y copr enable ublue-os/packages
-# dnf5 install -y ublue-brew
+dnf5 -y copr enable ublue-os/packages
+dnf5 install -y ublue-brew ublue-fastfetch
+dnf5 -y copr disable ublue-os/packages
 
 # dnf5 install -y distribution-gpg-keys
 sudo rpmkeys --import /usr/share/distribution-gpg-keys/rpmfusion/RPM-GPG-KEY-rpmfusion-free-fedora-$FEDORA_VERSION
@@ -58,7 +57,6 @@ dnf5 config-manager setopt fedora-cisco-openh264.enabled=0
 systemctl enable podman.socket
 systemctl enable libvirtd
 
-# dnf5 -y copr disable ublue-os/packages
 
 
-# dnf5 remove -y distribution-gpg-keys # put at the very end for safety
+
