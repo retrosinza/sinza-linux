@@ -24,7 +24,7 @@ flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.f
 # installs tui browsers because I like them
 dnf5 install -y @text-internet
 
-# Also remove the GUI browsers that I don't really want
+# Also remove the GUI browsers that I don't really want as packages
 dnf5 remove -y firefox thunderbird
 
 # this installs the whole virtualization group
