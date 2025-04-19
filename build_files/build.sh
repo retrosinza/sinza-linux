@@ -17,6 +17,8 @@ set -ouex pipefail
 #                                   # autoremove it!
 # dnf5 remove -y toolbox fedora-flathub-remote # dnf5 cleans up after itself as it's
 #                                              # a well-behaved package manager
+dnf5 install -y distrobox emacs
+dnf5 remove -y toolbox
 
 # installs flathub remote
 # flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
@@ -25,12 +27,8 @@ set -ouex pipefail
 # for codec reasons
 # dnf5 remove -y firefox thunderbird elisa
 
-# Adds Emacs (necessary)
-dnf5 install -y emacs
-
 # this installs the whole virtualization group
 # the --with-optional version includes all architectures supported by QEMU
-# VirtualBox is added here because of rpmfusion being here
 dnf5 group install -y --with-optional virtualization 
 
 # ublue package
@@ -47,13 +45,13 @@ dnf5 remove -y rpmfusion-free-release-$FEDORA_VERSION
 # dnf5 config-manager setopt fedora-cisco-openh264.enabled=0
 
 # Installs 86box
-# dnf5 -y copr enable rob72/86Box
-# dnf5 install -y 86Box
+dnf5 -y copr enable rob72/86Box
+dnf5 install -y 86Box
+dnf5 -y copr disable rob72/86Box #disables COPR so it doesn't end up on final image
 # mkdir -p /usr/local/share/86Box/
 # curl -sL https://github.com/86Box/roms/archive/refs/tags/$BOX86_VERSION.tar.gz -o /usr/local/share/86Box/$BOX86_VERSION.tar.gz
 # tar xzf /usr/local/share/86Box/$BOX86_VERSION.tar.gz
 # mv $BOX86_VERSION-roms roms
-# dnf5 -y copr disable rob72/86Box #disables COPR so it doesn't end up on final image
 
 #### Example for enabling a System Unit File
 
