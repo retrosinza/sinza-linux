@@ -12,18 +12,21 @@ set -ouex pipefail
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/42/x86_64/repoview/index.html&protocol=https&redirect=1
 
 # removes toolbox and fedora flathub
-dnf5 install -y distrobox flatpak # flatpak must be specified or else
-                                  # fedora-flathub-remote will
-                                  # autoremove it!
-dnf5 remove -y toolbox fedora-flathub-remote # dnf5 cleans up after itself as it's
-                                             # a well-behaved package manager
+# dnf5 install -y distrobox flatpak # flatpak must be specified or else
+#                                   # fedora-flathub-remote will
+#                                   # autoremove it!
+# dnf5 remove -y toolbox fedora-flathub-remote # dnf5 cleans up after itself as it's
+#                                              # a well-behaved package manager
 
 # installs flathub remote
-flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+# flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # Also remove the applications that I don't really want as packages
 # for codec reasons
-dnf5 remove -y firefox thunderbird elisa
+# dnf5 remove -y firefox thunderbird elisa
+
+# Adds Emacs (necessary)
+dnf5 install -y emacs
 
 # this installs the whole virtualization group
 # the --with-optional version includes all architectures supported by QEMU
@@ -31,9 +34,9 @@ dnf5 remove -y firefox thunderbird elisa
 dnf5 group install -y --with-optional virtualization 
 
 # ublue package
-dnf5 -y copr enable ublue-os/packages
-dnf5 install -y ublue-brew ublue-fastfetch
-dnf5 -y copr disable ublue-os/packages
+# dnf5 -y copr enable ublue-os/packages
+# dnf5 install -y ublue-brew ublue-fastfetch
+# dnf5 -y copr disable ublue-os/packages
 
 # dnf5 install -y distribution-gpg-keys
 sudo rpmkeys --import /usr/share/distribution-gpg-keys/rpmfusion/RPM-GPG-KEY-rpmfusion-free-fedora-$FEDORA_VERSION

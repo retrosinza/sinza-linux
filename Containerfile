@@ -4,7 +4,7 @@ COPY build_files /
 
 # Base Image
 #FROM quay.io/fedora/fedora-bootc:42
-FROM ghcr.io/ublue-os/kinoite-main:latest
+FROM ghcr.io/ublue-os/aurora-main:latest
 
 ## Other possible base images include:
 # FROM ghcr.io/ublue-os/bazzite:latest
