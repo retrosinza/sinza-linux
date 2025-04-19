@@ -39,12 +39,12 @@ dnf5 group install -y --with-optional virtualization
 # dnf5 -y copr disable ublue-os/packages
 
 # dnf5 install -y distribution-gpg-keys
-sudo rpmkeys --import /usr/share/distribution-gpg-keys/rpmfusion/RPM-GPG-KEY-rpmfusion-free-fedora-$FEDORA_VERSION
-dnf5 --setopt=localpkg_gpgcheck=1 install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$FEDORA_VERSION.noarch.rpm
+# sudo rpmkeys --import /usr/share/distribution-gpg-keys/rpmfusion/RPM-GPG-KEY-rpmfusion-free-fedora-$FEDORA_VERSION
+# dnf5 --setopt=localpkg_gpgcheck=1 install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$FEDORA_VERSION.noarch.rpm
 dnf5 config-manager setopt fedora-cisco-openh264.enabled=1
 dnf5 install -y VirtualBox
-dnf5 remove -y rpmfusion-free-release-$FEDORA_VERSION
-dnf5 config-manager setopt fedora-cisco-openh264.enabled=0
+# dnf5 remove -y rpmfusion-free-release-$FEDORA_VERSION
+# dnf5 config-manager setopt fedora-cisco-openh264.enabled=0
 
 # Installs 86box
 # dnf5 -y copr enable rob72/86Box
